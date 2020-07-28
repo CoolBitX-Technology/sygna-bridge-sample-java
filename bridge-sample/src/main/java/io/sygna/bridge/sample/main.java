@@ -63,12 +63,12 @@ public class main {
         sensitiveData.add("originator", originator);
         sensitiveData.add("beneficiary", beneficiary);
 
-        String privateInfo = Crypto.sygnaEncodePrivateObj(sensitiveData, ORIGINATOR_PUBLIC_KEY);
-        JsonObject decodedPrivateInfo = Crypto.sygnaDecodePrivateObj(privateInfo, ORIGINATOR_PRIVATE_KEY);
-        boolean isEqual = decodedPrivateInfo.equals(sensitiveData);
+        String privateInfo = Crypto.encryptPrivateObj(sensitiveData, ORIGINATOR_PUBLIC_KEY);
+        JsonObject decryptedPrivateInfo = Crypto.decryptPrivateObj(privateInfo, ORIGINATOR_PRIVATE_KEY);
+        boolean isEqual = decryptedPrivateInfo.equals(sensitiveData);
 
         System.out.printf("privateInfo %s\n", privateInfo);
-        System.out.printf("decodedPrivateInfo %s\n", decodedPrivateInfo.toString());
+        System.out.printf("decryptedPrivateInfo %s\n", decryptedPrivateInfo.toString());
         System.out.printf("isEqual %s\n", isEqual);
     }
 
@@ -121,7 +121,7 @@ public class main {
         sensitiveData.add("originator", originator);
         sensitiveData.add("beneficiary", beneficiary);
 
-        String privateInfo = Crypto.sygnaEncodePrivateObj(sensitiveData, BENEFICIARY_PUBLIC_KEY);
+        String privateInfo = Crypto.encryptPrivateObj(sensitiveData, BENEFICIARY_PUBLIC_KEY);
 
         String originatorVASPCode = "VASPUSNY1";
 
